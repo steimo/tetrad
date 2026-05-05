@@ -1,4 +1,4 @@
-import {prepareWithSegments, layoutNextLineRange, materializeLineRange} from '@chenglou/pretext';
+import { prepareWithSegments, layoutNextLineRange, materializeLineRange } from '@chenglou/pretext';
 
 const FONT = `13px ${getComputedStyle(document.body).fontFamily}`;
 const TEXT_STYLE = `font: ${FONT}; fill: #444; pointer-events: none;`;
@@ -8,15 +8,35 @@ const MAX_WIDTH = 100;
 const TOP_MARGIN = 10;
 const BOTTOM_MARGIN = 10;
 const STORAGE_KEY = 'tetrad-state';
+const CENTER_LABEL_MAX_WIDTH = 180;
+const CENTER_LABEL_FONT_SIZE = 18;
+
+function updateCenterLabel(text) {
+    const el = document.getElementById('label-center');
+    el.style.fontSize = '';
+    el.textContent = text ? text.toUpperCase() : 'MEDIUM';
+
+    let fontSize = CENTER_LABEL_FONT_SIZE;
+    while (el.getComputedTextLength() > CENTER_LABEL_MAX_WIDTH && fontSize > 9) {
+        fontSize -= 1;
+        el.style.fontSize = `${fontSize}px`;
+    }
+
+    if (fontSize === CENTER_LABEL_FONT_SIZE) {
+        el.style.fontSize = '';
+    }
+
+    return el.getComputedTextLength() <= CENTER_LABEL_MAX_WIDTH;
+}
 
 const configs = {
-    'enhance': {side: 'left', topBoundary: -200, bottomBoundary: 0},
-    'reverse': {side: 'right', topBoundary: -200, bottomBoundary: 0},
-    'retrieve': {side: 'left', topBoundary: 0, bottomBoundary: 200},
-    'obsolesce': {side: 'right', topBoundary: 0, bottomBoundary: 200},
+    'enhance': { side: 'left', topBoundary: -200, bottomBoundary: 0 },
+    'reverse': { side: 'right', topBoundary: -200, bottomBoundary: 0 },
+    'retrieve': { side: 'left', topBoundary: 0, bottomBoundary: 200 },
+    'obsolesce': { side: 'right', topBoundary: 0, bottomBoundary: 200 },
 };
 
-const scrollOffsets = {enhance: 0, reverse: 0, retrieve: 0, obsolesce: 0};
+const scrollOffsets = { enhance: 0, reverse: 0, retrieve: 0, obsolesce: 0 };
 const svg = document.querySelector('.tetrad-wrapper svg');
 const textGroups = {};
 
@@ -45,7 +65,7 @@ function getTargetQuadrant(e, svgElement) {
 
 function getTotalLines(preparedText) {
     let totalLines = 0;
-    let cursor = {segmentIndex: 0, graphemeIndex: 0};
+    let cursor = { segmentIndex: 0, graphemeIndex: 0 };
 
     while (cursor) {
         const range = layoutNextLineRange(preparedText, cursor, MAX_WIDTH);
@@ -58,7 +78,7 @@ function getTotalLines(preparedText) {
 }
 
 function calculateHuggingX(currentY, config) {
-    const {side, topBoundary, bottomBoundary} = config;
+    const { side, topBoundary, bottomBoundary } = config;
     const centerY = (topBoundary + bottomBoundary) / 2;
     const boundedY = Math.max(topBoundary, Math.min(bottomBoundary, currentY));
     const diamondEdgeOffset = 100 - Math.abs(boundedY - centerY);
@@ -72,7 +92,7 @@ function clampAndApplyScroll(id, preparedText, deltaY = 0) {
         scrollOffsets[id] = 0;
         return;
     }
-    const {topBoundary, bottomBoundary} = configs[id];
+    const { topBoundary, bottomBoundary } = configs[id];
     const viewportHeight = bottomBoundary - topBoundary;
     const totalLines = getTotalLines(preparedText);
     const maxScroll = Math.max(0, totalLines * LINE_HEIGHT - viewportHeight + TOP_MARGIN + BOTTOM_MARGIN);
@@ -86,11 +106,11 @@ function renderQuadrant(id, preparedText) {
     if (!preparedText) return;
 
     const config = configs[id];
-    const {side, topBoundary, bottomBoundary} = config;
+    const { side, topBoundary, bottomBoundary } = config;
     const visibleTop = topBoundary + TOP_MARGIN;
     const visibleBottom = bottomBoundary - BOTTOM_MARGIN;
 
-    let cursor = {segmentIndex: 0, graphemeIndex: 0};
+    let cursor = { segmentIndex: 0, graphemeIndex: 0 };
     let currentY = visibleTop - scrollOffsets[id];
 
     while (cursor) {
@@ -124,7 +144,7 @@ function updateView(id, deltaY = 0) {
 }
 
 function saveToStorage() {
-    const state = {medium: document.getElementById('tetrad-medium').value};
+    const state = { medium: document.getElementById('tetrad-medium').value };
     Object.keys(configs).forEach(id => { state[id] = document.getElementById(`tetrad-${id}`).value; });
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 }
@@ -136,18 +156,18 @@ function loadFromStorage() {
         const state = JSON.parse(raw);
         const mediumEl = document.getElementById('tetrad-medium');
         mediumEl.value = state.medium || '';
-        document.getElementById('label-center').textContent = state.medium?.trim() || 'MEDIUM';
+        updateCenterLabel(state.medium?.trim());
         Object.keys(configs).forEach(id => {
             if (state[id] != null) document.getElementById(`tetrad-${id}`).value = state[id];
         });
-    } catch (_) {}
+    } catch (_) { }
 }
 
 svg.addEventListener('wheel', (e) => {
     e.preventDefault();
     const targetId = getTargetQuadrant(e, svg);
     if (targetId) updateView(targetId, e.deltaY * 0.5);
-}, {passive: false});
+}, { passive: false });
 
 let activeTouchTarget = null;
 let lastTouchY = 0;
@@ -158,7 +178,7 @@ svg.addEventListener('touchstart', (e) => {
         activeTouchTarget = getTargetQuadrant(touch, svg);
         lastTouchY = touch.clientY;
     }
-}, {passive: false});
+}, { passive: false });
 
 svg.addEventListener('touchmove', (e) => {
     if (!activeTouchTarget || e.touches.length !== 1) return;
@@ -166,21 +186,25 @@ svg.addEventListener('touchmove', (e) => {
     const touch = e.touches[0];
     updateView(activeTouchTarget, lastTouchY - touch.clientY);
     lastTouchY = touch.clientY;
-}, {passive: false});
+}, { passive: false });
 
 const resetTouch = () => { activeTouchTarget = null; };
 svg.addEventListener('touchend', resetTouch);
 svg.addEventListener('touchcancel', resetTouch);
 
 document.getElementById('tetrad-medium').addEventListener('input', (e) => {
-    document.getElementById('label-center').textContent = e.target.value.trim() || 'MEDIUM';
+    const fits = updateCenterLabel(e.target.value.trim());
+    if (!fits) {
+        e.target.value = e.target.value.slice(0, -1);
+        updateCenterLabel(e.target.value.trim());
+    }
     saveToStorage();
 });
 
 document.getElementById('btn-clear').addEventListener('click', () => {
     if (!confirm('Clear all fields? This cannot be undone.')) return;
     document.getElementById('tetrad-medium').value = '';
-    document.getElementById('label-center').textContent = 'MEDIUM';
+    updateCenterLabel('');
     Object.keys(configs).forEach(id => {
         document.getElementById(`tetrad-${id}`).value = '';
         updateView(id);

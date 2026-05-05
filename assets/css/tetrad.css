@@ -81,7 +81,6 @@
   font-size: 18px;
   font-weight: var(--font-weight-bold, 700);
   fill: var(--color-base, #202122);
-  text-transform: uppercase;
   pointer-events: none;
 }
 
