@@ -4,56 +4,32 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   margin: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   font-family: var(--font-family-base, sans-serif);
   font-size: var(--font-size-medium, 1rem);
   line-height: var(--line-height-medium, 1.625rem);
   color: var(--color-base, #202122);
-  background-color: var(--background-color-base, #fff);
-}
-
-/* Header */
-.site-header {
-  border-bottom: var(--border-width-base, 1px) solid var(--border-color-base, #a2a9b1);
-  background-color: var(--background-color-base, #fff);
-}
-
-.site-header__inner {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-100, 16px);
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: var(--spacing-75, 12px) var(--spacing-150, 24px);
-}
-
-.site-header__title {
-  font-size: var(--font-size-large, 1.125rem);
-  font-weight: var(--font-weight-bold, 700);
-  color: var(--color-base, #202122);
-  text-decoration: none;
-}
-
-.site-header__title:hover {
-  color: var(--color-progressive, #3366cc);
-}
-
-.site-header__nav {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-50, 8px);
-  margin-left: auto;
+  background-color: var(--background-color-neutral-subtle, #fff);
 }
 
 /* Main content */
 .site-content {
-  min-height: calc(100vh - 120px);
+  flex: 1;
 }
 
 .site-content__inner {
+  height: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  background-color: var(--background-color-base, #fff);
   padding: var(--spacing-200, 32px) var(--spacing-150, 24px);
 }
 
@@ -69,8 +45,41 @@ body {
   padding: var(--spacing-100, 16px) var(--spacing-150, 24px);
 }
 
-.site-footer__text {
-  margin: 0;
+.site-footer__license {
+  margin: 0 0 var(--spacing-50, 8px);
   font-size: var(--font-size-small, 0.875rem);
   color: var(--color-subtle, #54595d);
+}
+
+.site-footer__license a {
+  color: var(--color-progressive, #3366cc);
+  text-decoration: none;
+}
+
+.site-footer__license a:hover {
+  text-decoration: underline;
+}
+
+.site-footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--spacing-75, 12px);
+  gap: var(--spacing-100, 16px);
+}
+
+.site-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-100, 16px);
+}
+
+.site-footer__links a {
+  font-size: var(--font-size-small, 0.875rem);
+  color: var(--color-progressive, #3366cc);
+  text-decoration: none;
+}
+
+.site-footer__links a:hover {
+  text-decoration: underline;
 }

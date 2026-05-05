@@ -4,14 +4,12 @@
   {% include head.html %}
 </head>
 <body class="skin-codex">
-  {% include header.html %}
   <main class="site-content">
     <div class="site-content__inner">
       {{ content }}
     </div>
   </main>
   {% include footer.html %}
-  <script type="module" src="{{ '/assets/js/main.js' | relative_url }}"></script>
   {%- for js in page.extra_js %}
   <script type="module" src="{{ js | relative_url }}"></script>
   {%- endfor %}
