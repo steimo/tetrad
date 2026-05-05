@@ -1,0 +1,17 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+<meta name="description" content="{{ page.description | default: site.description }}">
+
+<link rel="stylesheet" href="https://unpkg.com/@wikimedia/codex-design-tokens@2.5.1/dist/theme-wikimedia-ui.css">
+<link rel="stylesheet" href="https://unpkg.com/@wikimedia/codex@2.5.1/dist/codex.style.css">
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+
+<script type="importmap">
+{
+  "imports": {
+    "@chenglou/pretext": "https://unpkg.com/@chenglou/pretext@0.0.6/dist/layout.js",
+    "@chenglou/pretext/rich-inline": "https://unpkg.com/@chenglou/pretext@0.0.6/dist/rich-inline.js"
+  }
+}
+</script>

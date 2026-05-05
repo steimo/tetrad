@@ -1,0 +1,19 @@
+title: Tetrad
+description: ""
+lang: en
+
+url: ""
+baseurl: ""
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+permalink: pretty
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - .gitignore
+  - README.md
+  - vendor/
