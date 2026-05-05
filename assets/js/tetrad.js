@@ -3,7 +3,7 @@ import { prepareWithSegments, layoutNextLineRange, materializeLineRange } from '
 const FONT = `13px ${getComputedStyle(document.body).fontFamily}`;
 const TEXT_STYLE = `font: ${FONT}; fill: #444; pointer-events: none;`;
 const LINE_HEIGHT = 16;
-const GUTTER = 22;
+const TEXT_EDGE_PADDING = 22;
 const MAX_WIDTH = 100;
 const TOP_MARGIN = 10;
 const BOTTOM_MARGIN = 10;
@@ -12,7 +12,7 @@ const CENTER_LABEL_MAX_WIDTH = 180;
 const CENTER_LABEL_FONT_SIZE = 18;
 
 function updateCenterLabel(text) {
-    const el = document.getElementById('label-center');
+    const el = document.getElementById('tetrad-center-label');
     el.style.fontSize = '';
     el.textContent = text ? text.toUpperCase() : 'MEDIUM';
 
@@ -29,7 +29,7 @@ function updateCenterLabel(text) {
     return el.getComputedTextLength() <= CENTER_LABEL_MAX_WIDTH;
 }
 
-const configs = {
+const quadrantConfigs = {
     'enhance': { side: 'left', topBoundary: -200, bottomBoundary: 0 },
     'reverse': { side: 'right', topBoundary: -200, bottomBoundary: 0 },
     'retrieve': { side: 'left', topBoundary: 0, bottomBoundary: 200 },
@@ -37,7 +37,7 @@ const configs = {
 };
 
 const scrollOffsets = { enhance: 0, reverse: 0, retrieve: 0, obsolesce: 0 };
-const svg = document.querySelector('.tetrad-wrapper svg');
+const svg = document.querySelector('.tetrad-tool__diagram svg');
 const textGroups = {};
 
 function createSVGElement(tag, attrs = {}) {
@@ -46,7 +46,7 @@ function createSVGElement(tag, attrs = {}) {
     return el;
 }
 
-Object.keys(configs).forEach(id => {
+Object.keys(quadrantConfigs).forEach(id => {
     const g = createSVGElement("g");
     svg.appendChild(g);
     textGroups[id] = g;
@@ -84,7 +84,7 @@ function calculateHuggingX(currentY, config) {
     const diamondEdgeOffset = 100 - Math.abs(boundedY - centerY);
     const direction = side === 'left' ? -1 : 1;
 
-    return (direction * 100) + (direction * diamondEdgeOffset) + (direction * GUTTER);
+    return (direction * 100) + (direction * diamondEdgeOffset) + (direction * TEXT_EDGE_PADDING);
 }
 
 function clampAndApplyScroll(id, preparedText, deltaY = 0) {
@@ -92,10 +92,10 @@ function clampAndApplyScroll(id, preparedText, deltaY = 0) {
         scrollOffsets[id] = 0;
         return;
     }
-    const { topBoundary, bottomBoundary } = configs[id];
-    const viewportHeight = bottomBoundary - topBoundary;
+    const { topBoundary, bottomBoundary } = quadrantConfigs[id];
+    const quadrantHeight = bottomBoundary - topBoundary;
     const totalLines = getTotalLines(preparedText);
-    const maxScroll = Math.max(0, totalLines * LINE_HEIGHT - viewportHeight + TOP_MARGIN + BOTTOM_MARGIN);
+    const maxScroll = Math.max(0, totalLines * LINE_HEIGHT - quadrantHeight + TOP_MARGIN + BOTTOM_MARGIN);
 
     scrollOffsets[id] = Math.min(Math.max(0, scrollOffsets[id] + deltaY), maxScroll);
 }
@@ -105,7 +105,7 @@ function renderQuadrant(id, preparedText) {
     group.innerHTML = '';
     if (!preparedText) return;
 
-    const config = configs[id];
+    const config = quadrantConfigs[id];
     const { side, topBoundary, bottomBoundary } = config;
     const visibleTop = topBoundary + TOP_MARGIN;
     const visibleBottom = bottomBoundary - BOTTOM_MARGIN;
@@ -145,7 +145,7 @@ function updateView(id, deltaY = 0) {
 
 function saveToStorage() {
     const state = { medium: document.getElementById('tetrad-medium').value };
-    Object.keys(configs).forEach(id => { state[id] = document.getElementById(`tetrad-${id}`).value; });
+    Object.keys(quadrantConfigs).forEach(id => { state[id] = document.getElementById(`tetrad-${id}`).value; });
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 }
 
@@ -157,7 +157,7 @@ function loadFromStorage() {
         const mediumEl = document.getElementById('tetrad-medium');
         mediumEl.value = state.medium || '';
         updateCenterLabel(state.medium?.trim());
-        Object.keys(configs).forEach(id => {
+        Object.keys(quadrantConfigs).forEach(id => {
             if (state[id] != null) document.getElementById(`tetrad-${id}`).value = state[id];
         });
     } catch (_) { }
@@ -205,14 +205,14 @@ document.getElementById('btn-clear').addEventListener('click', () => {
     if (!confirm('Clear all fields? This cannot be undone.')) return;
     document.getElementById('tetrad-medium').value = '';
     updateCenterLabel('');
-    Object.keys(configs).forEach(id => {
+    Object.keys(quadrantConfigs).forEach(id => {
         document.getElementById(`tetrad-${id}`).value = '';
         updateView(id);
     });
     localStorage.removeItem(STORAGE_KEY);
 });
 
-Object.keys(configs).forEach(id => {
+Object.keys(quadrantConfigs).forEach(id => {
     document.getElementById(`tetrad-${id}`).addEventListener('input', () => {
         updateView(id);
         saveToStorage();
@@ -220,4 +220,4 @@ Object.keys(configs).forEach(id => {
 });
 
 loadFromStorage();
-Object.keys(configs).forEach(id => updateView(id));
+Object.keys(quadrantConfigs).forEach(id => updateView(id));

@@ -35,8 +35,7 @@
   margin-left: auto;
 }
 
-/* Diagram. The legacy `.tetrad-wrapper` class is retained as a JS hook
-   (queried by assets/js/tetrad.js); style via the BEM name. */
+/* Diagram */
 .tetrad-tool__diagram {
   position: relative;
   width: 100%;
