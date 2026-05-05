@@ -12,5 +12,8 @@
   </main>
   {% include footer.html %}
   <script type="module" src="{{ '/assets/js/main.js' | relative_url }}"></script>
+  {%- for js in page.extra_js %}
+  <script type="module" src="{{ js | relative_url }}"></script>
+  {%- endfor %}
 </body>
 </html>

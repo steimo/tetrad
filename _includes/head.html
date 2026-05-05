@@ -6,6 +6,9 @@
 <link rel="stylesheet" href="https://unpkg.com/@wikimedia/codex-design-tokens@2.5.1/dist/theme-wikimedia-ui.css">
 <link rel="stylesheet" href="https://unpkg.com/@wikimedia/codex@2.5.1/dist/codex.style.css">
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+{%- for css in page.extra_css %}
+<link rel="stylesheet" href="{{ css | relative_url }}">
+{%- endfor %}
 
 <script type="importmap">
 {
