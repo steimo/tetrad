@@ -21,4 +21,4 @@ Pull requests are welcome. Open an issue first for significant changes.
 
 ## Rights
 
-Open source. The Tetrad of Media Effects is the intellectual legacy of [Marshall McLuhan](https://en.wikipedia.org/wiki/Marshall_McLuhan). Any associated rights belong to their respective holders, including [Andrew McLuhan](https://themcluhaninstitute.com/).
+The Tetrad of Media Effects is the intellectual legacy of [Marshall McLuhan](https://en.wikipedia.org/wiki/Marshall_McLuhan). Any associated rights belong to their respective holders, including [Andrew McLuhan](https://themcluhaninstitute.com/).

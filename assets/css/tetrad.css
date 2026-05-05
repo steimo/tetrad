@@ -141,6 +141,8 @@
 .hatnote {
   margin-top: calc(-1 * var(--spacing-50, 8px));
   margin-bottom: var(--spacing-150, 24px);
+  padding-bottom: var(--spacing-100, 16px);
   font-style: italic;
   color: var(--color-subtle, #54595d);
+  border-bottom: 1px solid var(--border-color-muted, #c8ccd1);
 }
