@@ -1,19 +1,26 @@
 # Tetrad
 
-A worksheet for working through Marshall McLuhan's Tetrad of Media Effects — a framework for analyzing how any medium or technology enhances, obsolesces, retrieves, and reverses. You name a technology and fill in the four effects yourself; the tool just structures your thinking, it doesn't do the analysis for you. Your notes flow into the diagram, where the text in each quadrant can be scrolled if it runs long.
+A worksheet for working through Marshall McLuhan's Tetrad of Media Effects — a framework for analyzing how any medium or technology enhances, obsolesces, retrieves, and reverses. You name a technology and fill in the four effects yourself, with your notes flowing into the diagram, where the text in each quadrant can be scrolled if it runs long.
 
 ## Install
 
-Requires Ruby 2.7.0 or higher and Bundler.
+Prerequisites:
+
+- Ruby 2.7.0 or newer
+- Bundler (`gem install bundler`)
 
 ```bash
 git clone https://github.com/steimo/tetrad
 cd tetrad
-gem install bundler && bundle install
-bundle exec jekyll serve --livereload
+bundle install
+bundle exec jekyll serve --livereload --baseurl ""
 ```
 
 Open **http://localhost:4000**.
+
+> The `--baseurl ""` flag serves the site at the root for local development.
+> In production it's hosted under `/tetrad` (see `_config.yml`), so without
+> the flag the dev server would only respond at `http://localhost:4000/tetrad/`.
 
 ## Contributing
 
