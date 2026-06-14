@@ -84,6 +84,8 @@
 }
 
 .tetrad-tool__actions {
+  display: flex;
+  gap: var(--spacing-50);
   margin-left: auto;
 }
 
@@ -241,4 +243,33 @@
 
 .tetrad-tool__footer-meta {
   margin-top: var(--spacing-25);
+}
+
+@media print {
+  .masthead,
+  .tetrad-tool__medium,
+  .tetrad-tool__panels,
+  .tetrad-tool__footer {
+    display: none !important;
+  }
+
+  .site-content__inner {
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .tetrad-tool {
+    width: auto;
+  }
+
+  .tetrad-tool__diagram {
+    width: 16cm;
+    max-width: 100%;
+    margin: 0;
+  }
 }

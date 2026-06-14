@@ -201,6 +201,8 @@ document.getElementById('tetrad-medium').addEventListener('input', (e) => {
     saveToStorage();
 });
 
+document.getElementById('btn-print').addEventListener('click', () => window.print());
+
 document.getElementById('btn-clear').addEventListener('click', () => {
     if (!confirm('Clear all fields? This cannot be undone.')) return;
     document.getElementById('tetrad-medium').value = '';
