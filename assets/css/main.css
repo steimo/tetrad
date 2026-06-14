@@ -108,7 +108,7 @@ body {
   position: relative;
   font-size: 0.75rem;
   font-weight: var(--font-weight-bold);
-  letter-spacing: 0.22em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-subtle);
 }
@@ -123,38 +123,10 @@ body {
   color: var(--color-base);
 }
 
-.masthead__bar {
-  display: flex;
-  gap: 2px;
-  width: 148px;
-  margin: var(--spacing-100) 0 0;
-}
-
-.masthead__bar-segment {
-  height: 4px;
-  flex: 1;
-}
-
-.masthead__bar-segment--enhance {
-  background-color: var(--color-enhance);
-}
-
-.masthead__bar-segment--reverse {
-  background-color: var(--color-reverse);
-}
-
-.masthead__bar-segment--retrieve {
-  background-color: var(--color-retrieve);
-}
-
-.masthead__bar-segment--obsolesce {
-  background-color: var(--color-obsolesce);
-}
-
 .masthead__lede {
   position: relative;
   max-width: 660px;
-  margin: var(--spacing-100) 0 0;
+  margin: var(--spacing-50) 0 0;
   font-size: 1.125rem;
   line-height: 1.5;
   color: var(--color-subtle);
