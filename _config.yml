@@ -1,5 +1,5 @@
-title: Tetrad
-description: ""
+title: Tetrad of Media Effects
+description: "A free, interactive tool based on Marshall McLuhan's Laws of Media. Enter any technology to explore its four simultaneous tetrad effects — what it enhances, obsolesces, retrieves, and reverses."
 lang: en
 
 url: "https://steimo.github.io"
@@ -10,6 +10,10 @@ kramdown:
   input: GFM
 
 permalink: pretty
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
 
 exclude:
   - Gemfile

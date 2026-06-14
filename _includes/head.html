@@ -1,7 +1,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
-<meta name="description" content="{{ page.description | default: site.description }}">
+{% seo %}
 
 <link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
 
@@ -18,6 +17,25 @@
 {
   "imports": {
     "@chenglou/pretext": "https://unpkg.com/@chenglou/pretext@0.0.8/dist/layout.js"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "{{ site.title }}",
+  "url": "{{ '/' | absolute_url }}",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any (web browser)",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": {{ site.description | jsonify }},
+  "isAccessibleForFree": true,
+  "about": {
+    "@type": "Thing",
+    "name": "Tetrad of media effects",
+    "sameAs": "https://en.wikipedia.org/wiki/Tetrad_of_media_effects"
   }
 }
 </script>

@@ -4,7 +4,7 @@ A worksheet for working through Marshall McLuhan's Tetrad of Media Effects — a
 
 ## Install
 
-Requires Ruby 3.1+ and Bundler.
+Requires Ruby 2.7.0 or higher and Bundler.
 
 ```bash
 git clone https://github.com/steimo/tetrad

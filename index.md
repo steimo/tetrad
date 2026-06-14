@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Tetrad of Media Effects — Interactive Tool"
-description: "An interactive research tool based on Marshall McLuhan's Laws of Media."
+title: "Interactive Tool for McLuhan's Laws of Media"
+description: "Map any technology onto McLuhan's tetrad and explore its four effects — what it enhances, obsolesces, retrieves, and reverses. A free interactive Laws of Media tool."
 extra_css:
   - /assets/css/tetrad.css
 extra_js:
