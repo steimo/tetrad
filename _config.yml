@@ -2,8 +2,8 @@ title: Tetrad
 description: ""
 lang: en
 
-url: ""
-baseurl: ""
+url: "https://steimo.github.io"
+baseurl: "/tetrad"
 
 markdown: kramdown
 kramdown:
