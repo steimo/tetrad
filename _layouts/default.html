@@ -3,13 +3,12 @@
 <head>
   {% include head.html %}
 </head>
-<body class="skin-codex">
+<body>
   <main class="site-content">
     <div class="site-content__inner">
       {{ content }}
     </div>
   </main>
-  {% include footer.html %}
   {%- for js in page.extra_js %}
   <script type="module" src="{{ js | relative_url }}"></script>
   {%- endfor %}

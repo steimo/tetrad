@@ -1,47 +1,97 @@
-/* Tetrad of Media Effects — page-specific styles.
-   Form-control styling (inputs/textareas/buttons) is provided by Codex
-   (cdx-text-input, cdx-text-area, cdx-button); this file only adds layout
-   and the diagram presentation. */
-
 .tetrad-tool {
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 100%;
 }
 
-/* Medium input row */
-.tetrad-tool__medium {
+.tetrad-section {
+  margin: 0 0 var(--spacing-100);
+}
+
+.tetrad-input,
+.tetrad-textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  color: var(--color-base);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-base);
+  padding: var(--spacing-50) var(--spacing-75);
+  outline: none;
+  transition: border-color 100ms, box-shadow 100ms;
+}
+
+.tetrad-input::placeholder,
+.tetrad-textarea::placeholder {
+  color: var(--color-placeholder);
+}
+
+.tetrad-input:focus,
+.tetrad-textarea:focus {
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 2px var(--color-focus-ring);
+}
+
+.tetrad-textarea {
+  display: block;
+  min-height: 112px;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.tetrad-button {
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-base);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-base);
+  padding: var(--spacing-50) var(--spacing-75);
+  cursor: pointer;
+  transition: background-color 100ms, border-color 100ms;
+}
+
+.tetrad-button:hover {
+  background-color: var(--color-bg-page);
+  border-color: var(--color-placeholder);
+}
+
+.tetrad-button:focus-visible {
+  outline: none;
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 2px var(--color-focus-ring);
+}
+
+.tetrad-tool__medium-row {
   display: flex;
   align-items: center;
-  align-self: stretch;
   flex-wrap: wrap;
-  gap: var(--spacing-75, 12px);
-  margin-bottom: var(--spacing-150, 24px);
+  gap: var(--spacing-75);
+  margin-top: var(--spacing-75);
 }
 
 .tetrad-tool__medium-label {
-  font-weight: var(--font-weight-bold, 700);
+  font-weight: var(--font-weight-bold);
   white-space: nowrap;
 }
 
 .tetrad-tool__medium-input {
   flex: 1 1 auto;
-  min-width: 180px;
-  max-width: 400px;
+  min-width: 200px;
+  max-width: 420px;
 }
 
 .tetrad-tool__actions {
   margin-left: auto;
 }
 
-/* Diagram */
 .tetrad-tool__diagram {
-  position: relative;
   width: 100%;
-  max-width: 500px;
+  max-width: 540px;
   aspect-ratio: 1 / 1;
-  padding: var(--spacing-50, 8px);
+  margin: var(--spacing-100) auto 0;
 }
 
 .tetrad-tool__diagram svg {
@@ -52,44 +102,53 @@
 }
 
 .tetrad-diagram__quadrant {
-  fill: var(--background-color-base, #fff);
-  stroke: var(--color-base, #202122);
+  fill: var(--color-bg-surface);
+  stroke: var(--color-base);
   stroke-width: 1;
   cursor: pointer;
   transition: fill 100ms;
 }
 
 .tetrad-diagram__quadrant:hover {
-  fill: var(--background-color-neutral-subtle, #f8f9fa);
-}
-
-.tetrad-diagram__axis {
-  stroke: var(--border-color-subtle, #c8ccd1);
-  stroke-width: 0.1;
+  fill: color-mix(in srgb, var(--color-base) 4%, var(--color-bg-surface));
 }
 
 .tetrad-diagram__quadrant-label {
-  font-size: 12px;
-  font-weight: var(--font-weight-bold, 700);
-  fill: var(--color-base, #202122);
-  letter-spacing: 0.04em;
+  font-size: 14px;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.07em;
   pointer-events: none;
+}
+
+#quadrant-enhance:hover~.tetrad-diagram__quadrant-label--enhance {
+  fill: var(--color-enhance);
+}
+
+#quadrant-reverse:hover~.tetrad-diagram__quadrant-label--reverse {
+  fill: var(--color-reverse);
+}
+
+#quadrant-retrieve:hover~.tetrad-diagram__quadrant-label--retrieve {
+  fill: var(--color-retrieve);
+}
+
+#quadrant-obsolesce:hover~.tetrad-diagram__quadrant-label--obsolesce {
+  fill: var(--color-obsolesce);
 }
 
 .tetrad-diagram__center-label {
   font-size: 18px;
-  font-weight: var(--font-weight-bold, 700);
-  fill: var(--color-base, #202122);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.02em;
   pointer-events: none;
 }
 
-/* Quadrant panels */
 .tetrad-tool__panels {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--spacing-100, 16px);
+  gap: var(--spacing-100);
   width: 100%;
-  margin-top: var(--spacing-150, 24px);
+  margin-top: var(--spacing-100);
 }
 
 @media (max-width: 600px) {
@@ -99,50 +158,87 @@
 }
 
 .tetrad-panel {
-  padding: var(--spacing-100, 16px);
-  border: var(--border-width-base, 1px) solid var(--border-color-muted, #c8ccd1);
-  border-radius: var(--border-radius-base, 2px);
-  background-color: var(--background-color-base, #fff);
+  padding: var(--spacing-100);
+  border: 1px solid var(--color-border-muted);
+  border-radius: var(--border-radius-base);
+  background-color: var(--color-bg-surface);
   transition: border-color 100ms;
 }
 
 .tetrad-panel:focus-within {
-  border-color: var(--border-color-progressive, #36c);
-  box-shadow: inset 0 0 0 1px var(--border-color-progressive, #36c);
+  border-color: var(--color-border-focus);
+  box-shadow: inset 0 0 0 1px var(--color-border-focus);
 }
 
 .tetrad-panel__header {
-  margin-bottom: var(--spacing-50, 8px);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-50);
+}
+
+.tetrad-panel__dot {
+  width: 9px;
+  height: 9px;
+  flex: none;
 }
 
 .tetrad-panel__title {
-  font-weight: var(--font-weight-bold, 700);
-  color: var(--color-base, #202122);
+  font-size: 1.125rem;
+  font-weight: var(--font-weight-bold);
 }
-
-.tetrad-panel--enhance   .tetrad-panel__title { color: #2a6d3a; }
-.tetrad-panel--reverse   .tetrad-panel__title { color: #7a4d00; }
-.tetrad-panel--retrieve  .tetrad-panel__title { color: #30569f; }
-.tetrad-panel--obsolesce .tetrad-panel__title { color: #9f3526; }
 
 .tetrad-panel__prompt {
-  margin-bottom: var(--spacing-50, 8px);
-  font-size: var(--font-size-small, 0.875rem);
-  color: var(--color-subtle, #54595d);
-  line-height: var(--line-height-small, 1.4286em);
+  margin: var(--spacing-25) 0 var(--spacing-75);
+  min-height: calc(1.45em * 2);
+  font-size: var(--font-size-base);
+  line-height: 1.45;
+  color: var(--color-subtle);
 }
 
-.tetrad-panel__field .cdx-text-area__textarea {
-  min-height: 80px;
-  resize: vertical;
+.tetrad-panel--enhance .tetrad-panel__dot {
+  background-color: var(--color-enhance);
 }
 
-/* Hatnote — italic, subtle introductory note (Wikipedia convention) */
-.hatnote {
-  margin-top: calc(-1 * var(--spacing-50, 8px));
-  margin-bottom: var(--spacing-150, 24px);
-  padding-bottom: var(--spacing-100, 16px);
-  font-style: italic;
-  color: var(--color-subtle, #54595d);
-  border-bottom: 1px solid var(--border-color-muted, #c8ccd1);
+.tetrad-panel--enhance .tetrad-panel__title {
+  color: var(--color-enhance);
+}
+
+.tetrad-panel--reverse .tetrad-panel__dot {
+  background-color: var(--color-reverse);
+}
+
+.tetrad-panel--reverse .tetrad-panel__title {
+  color: var(--color-reverse);
+}
+
+.tetrad-panel--retrieve .tetrad-panel__dot {
+  background-color: var(--color-retrieve);
+}
+
+.tetrad-panel--retrieve .tetrad-panel__title {
+  color: var(--color-retrieve);
+}
+
+.tetrad-panel--obsolesce .tetrad-panel__dot {
+  background-color: var(--color-obsolesce);
+}
+
+.tetrad-panel--obsolesce .tetrad-panel__title {
+  color: var(--color-obsolesce);
+}
+
+.tetrad-tool__footer {
+  margin-top: var(--spacing-200);
+  padding-top: var(--spacing-100);
+  border-top: 1px solid var(--color-border);
+  font-size: 0.875rem;
+  color: var(--color-subtle);
+}
+
+.tetrad-tool__footer p {
+  margin: 0;
+}
+
+.tetrad-tool__footer-meta {
+  margin-top: var(--spacing-25);
 }

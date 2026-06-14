@@ -1,6 +1,6 @@
 # Tetrad
 
-An open source tool for exploring Marshall McLuhan's Tetrad of Media Effects — a framework for analyzing how any medium or technology enhances, obsolesces, retrieves, and reverses.
+A worksheet for working through Marshall McLuhan's Tetrad of Media Effects — a framework for analyzing how any medium or technology enhances, obsolesces, retrieves, and reverses. You name a technology and fill in the four effects yourself; the tool just structures your thinking, it doesn't do the analysis for you. Your notes flow into the diagram, where the text in each quadrant can be scrolled if it runs long.
 
 ## Install
 

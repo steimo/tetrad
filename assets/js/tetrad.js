@@ -217,6 +217,16 @@ Object.keys(quadrantConfigs).forEach(id => {
         updateView(id);
         saveToStorage();
     });
+
+    const quadrant = document.getElementById(`quadrant-${id}`);
+    quadrant.style.cursor = 'pointer';
+    quadrant.addEventListener('click', () => {
+        document.getElementById(`tetrad-${id}`).focus();
+    });
+});
+
+document.getElementById('quadrant-center').addEventListener('click', () => {
+    document.getElementById('tetrad-medium').focus();
 });
 
 loadFromStorage();

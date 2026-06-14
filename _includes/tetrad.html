@@ -1,79 +1,88 @@
 <div class="tetrad-tool">
 
-  <div class="tetrad-tool__medium">
-    <label class="tetrad-tool__medium-label" for="tetrad-medium">Technology / Medium:</label>
-    <div class="cdx-text-input tetrad-tool__medium-input">
-      <input class="cdx-text-input__input" type="text" id="tetrad-medium"
-             placeholder="e.g. Radio, Smartphone, Automobile&hellip;" autocomplete="off">
+  <section class="tetrad-section tetrad-tool__medium">
+    <div class="tetrad-tool__medium-row">
+      <label class="tetrad-tool__medium-label" for="tetrad-medium">Technology&nbsp;/&nbsp;Medium</label>
+      <input class="tetrad-input tetrad-tool__medium-input" type="text" id="tetrad-medium"
+        placeholder="e.g. Radio, Internet, Automobile&hellip;" autocomplete="off">
+      <button class="tetrad-button tetrad-tool__actions" id="btn-clear" type="button">Clear all</button>
     </div>
-    <div class="tetrad-tool__actions">
-      <button class="cdx-button" id="btn-clear" type="button">Clear all</button>
+  </section>
+
+  <section class="tetrad-section">
+    <div class="tetrad-tool__diagram">
+      <svg viewBox="-280 -280 560 560" xmlns="http://www.w3.org/2000/svg" aria-label="Tetrad of Media Effects diagram">
+        <polygon id="quadrant-enhance" class="tetrad-diagram__quadrant" points="-100,-200 0,-100 -100,0 -200,-100" />
+        <polygon id="quadrant-reverse" class="tetrad-diagram__quadrant" points="100,-200 200,-100 100,0 0,-100" />
+        <polygon id="quadrant-retrieve" class="tetrad-diagram__quadrant" points="-100,0 0,100 -100,200 -200,100" />
+        <polygon id="quadrant-obsolesce" class="tetrad-diagram__quadrant" points="100,0 200,100 100,200 0,100" />
+        <polygon id="quadrant-center" class="tetrad-diagram__quadrant" points="0,-100 100,0 0,100 -100,0" />
+
+        <text x="-100" y="-100" text-anchor="middle" dominant-baseline="central"
+          class="tetrad-diagram__quadrant-label tetrad-diagram__quadrant-label--enhance">ENHANCES</text>
+        <text x="100" y="-100" text-anchor="middle" dominant-baseline="central"
+          class="tetrad-diagram__quadrant-label tetrad-diagram__quadrant-label--reverse">REVERSES</text>
+        <text x="-100" y="100" text-anchor="middle" dominant-baseline="central"
+          class="tetrad-diagram__quadrant-label tetrad-diagram__quadrant-label--retrieve">RETRIEVES</text>
+        <text x="100" y="100" text-anchor="middle" dominant-baseline="central"
+          class="tetrad-diagram__quadrant-label tetrad-diagram__quadrant-label--obsolesce">OBSOLESCES</text>
+        <text id="tetrad-center-label" x="0" y="0" text-anchor="middle" dominant-baseline="central"
+          class="tetrad-diagram__center-label">MEDIUM</text>
+      </svg>
     </div>
-  </div>
+  </section>
 
-  <div class="tetrad-tool__diagram">
-    <svg viewBox="-280 -280 560 560" xmlns="http://www.w3.org/2000/svg"
-         aria-label="Tetrad of Media Effects diagram">
-      <polygon id="quadrant-enhance"   class="tetrad-diagram__quadrant" points="-100,-200 0,-100 -100,0 -200,-100"/>
-      <polygon id="quadrant-reverse"   class="tetrad-diagram__quadrant" points="100,-200 200,-100 100,0 0,-100"/>
-      <polygon id="quadrant-retrieve"  class="tetrad-diagram__quadrant" points="-100,0 0,100 -100,200 -200,100"/>
-      <polygon id="quadrant-obsolesce" class="tetrad-diagram__quadrant" points="100,0 200,100 100,200 0,100"/>
-
-      <!-- <line x1="0" y1="-250" x2="0" y2="250" class="tetrad-diagram__axis"/> -->
-      <!-- <line x1="-250" y1="0" x2="250" y2="0" class="tetrad-diagram__axis"/> -->
-
-      <text x="-100" y="-100" text-anchor="middle" dominant-baseline="central" class="tetrad-diagram__quadrant-label">ENHANCES</text>
-      <text x="100"  y="-100" text-anchor="middle" dominant-baseline="central" class="tetrad-diagram__quadrant-label">REVERSES</text>
-      <text x="-100" y="100"  text-anchor="middle" dominant-baseline="central" class="tetrad-diagram__quadrant-label">RETRIEVES</text>
-      <text x="100"  y="100"  text-anchor="middle" dominant-baseline="central" class="tetrad-diagram__quadrant-label">OBSOLESCES</text>
-      <text id="tetrad-center-label" x="0" y="0" text-anchor="middle" dominant-baseline="central" class="tetrad-diagram__center-label">MEDIUM</text>
-    </svg>
-  </div>
-
-  <div class="tetrad-tool__panels">
-    <div class="tetrad-panel tetrad-panel--enhance" data-quadrant="enhance">
-      <div class="tetrad-panel__header">
-        <span class="tetrad-panel__title">Enhancement</span>
+  <section class="tetrad-section">
+    <div class="tetrad-tool__panels">
+      <div class="tetrad-panel tetrad-panel--enhance">
+        <div class="tetrad-panel__header">
+          <span class="tetrad-panel__dot"></span>
+          <span class="tetrad-panel__title">Enhances</span>
+        </div>
+        <p class="tetrad-panel__prompt">What does the medium <strong>amplify or intensify</strong>?</p>
+        <textarea class="tetrad-textarea" id="tetrad-enhance"
+          placeholder="e.g. Amplifies news via sound. Extends reach of voice."></textarea>
       </div>
-      <div class="tetrad-panel__prompt">What does the medium <strong>amplify or intensify</strong>?</div>
-      <div class="cdx-text-area tetrad-panel__field">
-        <textarea class="cdx-text-area__textarea" id="tetrad-enhance"
-                  placeholder="e.g. Amplifies news via sound. Extends reach of voice."></textarea>
+
+      <div class="tetrad-panel tetrad-panel--reverse">
+        <div class="tetrad-panel__header">
+          <span class="tetrad-panel__dot"></span>
+          <span class="tetrad-panel__title">Reverses</span>
+        </div>
+        <p class="tetrad-panel__prompt">What does the medium <strong>flip into</strong> when pushed to extremes?</p>
+        <textarea class="tetrad-textarea" id="tetrad-reverse"
+          placeholder="e.g. Acoustic radio flips into audio-visual TV. Overload leads to tuning out."></textarea>
+      </div>
+
+      <div class="tetrad-panel tetrad-panel--retrieve">
+        <div class="tetrad-panel__header">
+          <span class="tetrad-panel__dot"></span>
+          <span class="tetrad-panel__title">Retrieves</span>
+        </div>
+        <p class="tetrad-panel__prompt">What does the medium <strong>recover</strong> that was previously lost?</p>
+        <textarea class="tetrad-textarea" id="tetrad-retrieve"
+          placeholder="e.g. Returns the spoken word. Revives oral storytelling."></textarea>
+      </div>
+
+      <div class="tetrad-panel tetrad-panel--obsolesce">
+        <div class="tetrad-panel__header">
+          <span class="tetrad-panel__dot"></span>
+          <span class="tetrad-panel__title">Obsolesces</span>
+        </div>
+        <p class="tetrad-panel__prompt">What does the medium <strong>drive out of prominence</strong>?</p>
+        <textarea class="tetrad-textarea" id="tetrad-obsolesce"
+          placeholder="e.g. Reduces prominence of print. Displaces the town crier."></textarea>
       </div>
     </div>
+  </section>
 
-    <div class="tetrad-panel tetrad-panel--reverse" data-quadrant="reverse">
-      <div class="tetrad-panel__header">
-        <span class="tetrad-panel__title">Reversal</span>
-      </div>
-      <div class="tetrad-panel__prompt">What does the medium <strong>flip into</strong> when pushed to extremes?</div>
-      <div class="cdx-text-area tetrad-panel__field">
-        <textarea class="cdx-text-area__textarea" id="tetrad-reverse"
-                  placeholder="e.g. Acoustic radio flips into audio-visual TV. Overload leads to tuning out."></textarea>
-      </div>
-    </div>
-
-    <div class="tetrad-panel tetrad-panel--retrieve" data-quadrant="retrieve">
-      <div class="tetrad-panel__header">
-        <span class="tetrad-panel__title">Retrieval</span>
-      </div>
-      <div class="tetrad-panel__prompt">What does the medium <strong>recover</strong> that was previously lost?</div>
-      <div class="cdx-text-area tetrad-panel__field">
-        <textarea class="cdx-text-area__textarea" id="tetrad-retrieve"
-                  placeholder="e.g. Returns the spoken word. Revives oral storytelling."></textarea>
-      </div>
-    </div>
-
-    <div class="tetrad-panel tetrad-panel--obsolesce" data-quadrant="obsolesce">
-      <div class="tetrad-panel__header">
-        <span class="tetrad-panel__title">Obsolescence</span>
-      </div>
-      <div class="tetrad-panel__prompt">What does the medium <strong>drive out of prominence</strong>?</div>
-      <div class="cdx-text-area tetrad-panel__field">
-        <textarea class="cdx-text-area__textarea" id="tetrad-obsolesce"
-                  placeholder="e.g. Reduces prominence of print. Displaces the town crier."></textarea>
-      </div>
-    </div>
-  </div>
+  <footer class="tetrad-tool__footer">
+    <p class="tetrad-tool__footer-note">Entries are saved automatically in this browser.</p>
+    <p class="tetrad-tool__footer-meta">
+      Open source on <a href="https://github.com/steimo/tetrad" target="_blank" rel="noopener">GitHub</a>.
+      Rights to the underlying framework belong to their respective holders, including
+      <a href="https://themcluhaninstitute.com/" target="_blank" rel="noopener">Andrew McLuhan</a>.
+    </p>
+  </footer>
 
 </div>
